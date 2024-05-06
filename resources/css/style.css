@@ -1,0 +1,23 @@
+.form-check-input:checked {
+    background-color: #056d1d !important;
+    border-color: #05581a !important;
+} 
+
+.delete-button:hover {
+    background-color: rgb(235, 159, 159);
+}
+
+body {
+    background-image: url("../img/download.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.w-10 {
+    width: 50px !important;
+}
+
+.w-80 {
+    width: calc(100% - 100px) !important;
+}

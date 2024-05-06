@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Link a Font Awesome-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!--Link bootstrap-->
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="resources/css/animation.css">
+  <link rel="stylesheet" href="resources/css/media-query.css">
+  <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="resources/js/script.js" type="module"></script>
+  <title>Document</title>
+</head>
+
+<body class="bg-dark">
+  <div id="app">
+    <div class="bg-light p-3 ">
+      <header class="container d-flex justify-content-between align-items-center ">
+        <img src="resources/img/logo.png" alt="logo">
+
+        <select name="list" id="list" v-model="list">
+          <option value="all">Tutto</option>
+          <option value="completed">Fatto</option>
+          <option value="not-completed">Da Fare</option>
+        </select>
+      </header>
+    </div>
+
+    <main class="container my-5 p-5 text-white border-2 border-black rounded-4">
+      <h1 class="text-center mb-3">Tasks gironaliere disintossicazione del Weekend Pasquale</h1>
+      <div class="input-group mb-3 shadow d-flex w-100" v-for="(value, index) in post" :key="value.id">
+        <div class="input-group-text border border-2 w-10 border-dark d-flex justify-content-center ">
+          <input class="form-check-input mt-0" role="button" type="checkbox"
+            aria-label="Checkbox for following text input" @change="selectPost(value.id)">
+        </div>
+        <div
+          class="input-group-text delete-button border border-2 border-start-0 w-10 border-dark d-flex justify-content-center "
+          @click="removePost(value.id)" role="button">
+          <i class="fa-regular fa-trash-can text-danger "></i>
+        </div>
+        <h6 class="w-80 border-2 border-dark border text-black border-start-0 mb-0 p-1"
+          :class="value.done?'bg-success-subtle':'bg-danger-subtle '">
+          {{value.text}}</h6>
+      </div>
+      <div>
+        <h2 class="mt-5">Inserisci un nuovo step verso la purificazione</h2>
+        <div class="mb-3">
+          <label for="todoText" class="form-label d-none"></label>
+          <input type="text" class="form-control shadow" id="todoText" v-model="newPostText" @keyup.enter="addPost()">
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+
+<style>
+</style>
+
+</html>
