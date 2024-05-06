@@ -18,13 +18,14 @@ createApp({
             })
         },
         selectPost(id) {
-            let element;
-            this.post.forEach(el => {
-                if (el.id === id) {
-                    element = el
-                }
+            const elementToChange = this.post.find((el) => {
+                return el.id === id;
             })
-            element.done = !element.done
+            console.log(elementToChange);
+            axios.put(this.apiUrl, elementToChange).then((response) => {
+                console.log(response.data);
+                elementToChange.done = !elementToChange.done
+            })
         },
         removePost(id) {
             //torviamo l'elelemento da rimuovere
@@ -33,12 +34,15 @@ createApp({
             })
             //rimuoviamo l'elemento dopo aver ottenuti il suo indice:
             const index = this.post.indexOf(elementToDelete);
+            const data = {
+                id: index,
+            }
             if (index !== -1) {
-                this.post.splice(index, 1)
+                axios.delete(this.apiUrl, { data }).then((response) => {
+                    console.log(response.data);
+                    this.post.splice(index, 1)
+                })
             };
-            axios.delete(this.apiUrl, { elementToDelete }).then((response) => {
-                console.log(response.data);
-            })
 
         },
         addPost() {
